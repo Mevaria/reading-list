@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reading list</title>
+  <style>
+    body { font-family: Georgia, "Times New Roman", serif; max-width: 36rem; margin: 3rem auto; padding: 0 1rem; color: #22303c; line-height: 1.6; }
+    h1 { font-weight: normal; font-size: 2rem; margin-bottom: 1.5rem; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 0.6rem 0; border-bottom: 1px solid #d5dde3; }
+    .author { color: #5b6b78; }
+    .read { color: #8a979f; text-decoration: line-through; }
+    .empty { color: #5b6b78; }
+  </style>
+</head>
+<body>
+  <h1>Reading list</h1>
+  {% if books %}
+  <ul>
+    {% for book in books %}
+    <li class="{{ 'read' if book.is_read }}">
+      {{ book.title }}{% if book.author %} <span class="author">by {{ book.author }}</span>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">No books yet. Add one through the API to start your list.</p>
+  {% endif %}
+</body>
+</html>
