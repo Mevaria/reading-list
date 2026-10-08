@@ -1,3 +1,4 @@
+
 """Reading list: a small Flask app used as the test surface for the dev pipeline."""
 
 from flask import Flask, jsonify, render_template, request
@@ -26,6 +27,11 @@ def create_app():
         author = payload.get("author", "")
         if title is None:
             return jsonify({"error": "Title is required"}), 400
+        
+        # Check if title is provided but consists only of whitespace
+        if isinstance(title, str) and not title.strip():
+            return jsonify({"error": "Title cannot be empty or whitespace"}), 400
+
         book = {
             "id": next_id["value"],
             "title": title,
