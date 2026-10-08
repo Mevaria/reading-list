@@ -19,4 +19,5 @@ These rules apply to every change in this repository, whether made by a person o
 - No security findings at or above the blocking severity.
 - Input from requests is validated before use.
 - No secrets, tokens or credentials in the code.
+- No route exposes internal configuration, environment or debug information.
 - The change stays within the scope of the request.
