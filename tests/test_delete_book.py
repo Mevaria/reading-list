@@ -1,4 +1,3 @@
-
 import pytest
 from app import create_app
 
@@ -23,8 +22,9 @@ def test_delete_existing_book_success(client):
 
 def test_delete_non_existent_book_failure(client):
     # Action: Attempt to delete a book with a non-existent ID (e.g., 999)
-    response = client.delete("/api/books/999")
+    book_id = 999
+    response = client.delete(f"/api/books/{book_id}")
 
-    # Assert: Failure returns 404 and the specific error JSON
+    # Assert: Failure returns 404 and the specific error JSON including the ID
     assert response.status_code == 404
-    assert response.get_json() == {"error": "Book not found"}
+    assert response.get_json() == {"error": "Book not found", "id": book_id}

@@ -48,7 +48,7 @@ def create_app():
     def delete_book(book_id):
         book = find_book(book_id)
         if book is None:
-            return jsonify({"error": "Book not found"}), 404
+            return jsonify({"error": "Book not found", "id": book_id}), 404
         books.remove(book)
         return "", 204
 
