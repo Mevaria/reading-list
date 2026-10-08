@@ -44,6 +44,14 @@ def create_app():
         book["is_read"] = True
         return jsonify(book)
 
+    @app.delete("/api/books/<int:book_id>")
+    def delete_book(book_id):
+        book = find_book(book_id)
+        if book is None:
+            return jsonify({"error": "Book not found"}), 404
+        books.remove(book)
+        return "", 204
+
     return app
 
 
