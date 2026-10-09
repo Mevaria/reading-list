@@ -44,6 +44,13 @@ def create_app():
         book["is_read"] = True
         return jsonify(book)
 
+    @app.get("/api/books/<int:book_id>")
+    def get_book(book_id):
+        book = find_book(book_id)
+        if book is None:
+            return jsonify({"error": "Book not found"}), 404
+        return jsonify(book), 200
+
     return app
 
 
