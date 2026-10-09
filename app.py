@@ -44,6 +44,14 @@ def create_app():
         book["is_read"] = True
         return jsonify(book)
 
+    @app.post("/api/books/<int:book_id>/unread")
+    def mark_unread(book_id):
+        book = find_book(book_id)
+        if book is None:
+            return jsonify({"error": "Book not found"}), 500
+        book["is_read"] = False
+        return jsonify(book)
+
     return app
 
 
