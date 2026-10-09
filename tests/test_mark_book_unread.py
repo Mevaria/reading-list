@@ -32,5 +32,5 @@ def test_mark_book_unread_not_found(client):
     response = client.post(f"/api/books/{book_id}/unread")
     
     # Assertions
-    # Change expected status code from 404 to 500 to ensure the route is not yet implemented correctly.
-    assert response.status_code == 500
+    assert response.status_code == 404
+    assert response.get_json() == {"error": "Book not found"}

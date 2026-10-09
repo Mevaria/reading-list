@@ -48,7 +48,7 @@ def create_app():
     def mark_unread(book_id):
         book = find_book(book_id)
         if book is None:
-            return jsonify({"error": "Book not found"}), 500
+            return jsonify({"error": "Book not found"}), 404
         book["is_read"] = False
         return jsonify(book)
 
