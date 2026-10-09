@@ -21,3 +21,4 @@ These rules apply to every change in this repository, whether made by a person o
 - No secrets, tokens or credentials in the code.
 - No route exposes internal configuration, environment or debug information.
 - The change stays within the scope of the request.
+- Every test asserts what the spec requires: expected status codes and response bodies come from the spec, never from what the current code happens to do.
